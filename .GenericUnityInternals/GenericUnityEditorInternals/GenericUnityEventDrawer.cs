@@ -17,12 +17,6 @@
     [CustomPropertyDrawer(typeof(UnityEventBase), true)]
     public class GenericUnityEventDrawer : UnityEventDrawer
     {
-        [DidReloadScripts]
-        private static void ReplaceDefaultDrawer()
-        {
-            DrawerReplacer.ReplaceDefaultDrawer<UnityEventBase, GenericUnityEventDrawer>();
-        }
-
         // The default implementation of DrawEvent. Only specific lines are changed and marked with the "Previously:" comments.
         // For meaningful names, look at https://github.com/Unity-Technologies/UnityCsReference/blob/master/Editor/Mono/Inspector/UnityEventDrawer.cs
         protected override void DrawEvent(Rect rect, int index, bool isActive, bool isFocused)
@@ -78,7 +72,7 @@
             if (!string.IsNullOrEmpty(stringValue))
             {
                 Type type2 = Type.GetType(stringValue, false);
-                if ((object) type2 == null) type2 = typeof(Object);
+                if ((object)type2 == null) type2 = typeof(Object);
                 type1 = type2;
             }
 
@@ -102,7 +96,7 @@
                     }
                     else goto label_22;
                 default:
-                    num = (uint) persistentListenerMode > 0U ? 1 : 0;
+                    num = (uint)persistentListenerMode > 0U ? 1 : 0;
                     break;
             }
 
@@ -198,7 +192,7 @@
 
             GeneratePopUpForType(menu, targetToUse, ComponentInfo.GetTypeName(target, true), listener, delegateArgumentsTypes);
 
-            if ( ! (targetToUse is GameObject gameObject))
+            if (!(targetToUse is GameObject gameObject))
                 return menu;
 
             ComponentInfo.ClearNames();
@@ -233,7 +227,7 @@
         {
             List<UnityEventDrawer.ValidMethodMap> methods = new List<UnityEventDrawer.ValidMethodMap>();
             bool flag = false;
-            if ((uint) delegateArgumentsTypes.Length > 0U)
+            if ((uint)delegateArgumentsTypes.Length > 0U)
             {
                 UnityEventDrawer.GetMethodsForTargetAndMode(target, delegateArgumentsTypes, methods,
                     PersistentListenerMode.EventDefined);
@@ -275,7 +269,7 @@
                 return;
             if (flag)
                 menu.AddItem(new GUIContent(targetName + "/ "), false, null);
-            if ((uint) delegateArgumentsTypes.Length > 0U)
+            if ((uint)delegateArgumentsTypes.Length > 0U)
                 menu.AddDisabledItem(new GUIContent(targetName + "/Static Parameters"));
             UnityEventDrawer.AddMethodsToMenu(menu, listener, methods, targetName);
         }
@@ -292,7 +286,7 @@
             {
                 Type unityObjectType = unityObject.GetType();
 
-                if ( ! _typeNameCache.TryGetValue(unityObjectType, out string shortName))
+                if (!_typeNameCache.TryGetValue(unityObjectType, out string shortName))
                 {
                     shortName = unityObject is MonoBehaviour
                         ? GetBehaviourShortName(unityObjectType)
