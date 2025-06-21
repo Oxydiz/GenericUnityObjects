@@ -152,7 +152,7 @@
 
         public static bool operator !=(TypeInfo lhs, TypeInfo rhs)
         {
-            return ! (lhs == rhs);
+            return !(lhs == rhs);
         }
 
         public override bool Equals(object obj)
@@ -230,7 +230,7 @@
             if (monoScript == null)
                 return false;
 
-            return Type == monoScript.GetClassType();
+            return Type == monoScript.GetClassType(Type);
         }
     }
 }
